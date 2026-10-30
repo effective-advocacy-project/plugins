@@ -50,6 +50,12 @@ a campaign shows only some, and refuses the others):
   "Which RN deputies are persuadable?" is one call.
 - One member's record: `voting_profile` with `member` (a name is fine).
 
+**Where each country stands**: `country_landscape` (no argument) gives one
+line per country, busiest first; with `jurisdiction` (`"IT"`, `"FR"`,
+`"EU"`, `"GB"` for the UK) the country's page. "not collected" is unknown,
+not zero; cards "awaiting review" are not counted yet; arguments are what is
+published in the country, voices are speakers from it.
+
 **Executive** (`jurisdiction` is `"EU"` for the Commission, `"FR"` or `"GB"`):
 
 - What the government did, said, promised and whom it met on the campaign,

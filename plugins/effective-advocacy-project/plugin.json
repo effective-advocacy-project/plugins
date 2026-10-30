@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "effective-advocacy-project",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Explore your EAP campaigns: actors, what they said, and how parliamentarians vote.",
   "author": {
     "name": "Effective Advocacy Project",
@@ -9,7 +9,7 @@
     "url": "https://effectiveadvocacyproject.org"
   },
   "homepage": "https://app.effectiveadvocacyproject.org/help/claude",
-  "repository": "https://github.com/hubert-thieriot/effective-advocacy-project-plugin",
+  "repository": "https://github.com/effective-advocacy-project/plugins",
   "license": "Proprietary",
   "keywords": ["advocacy", "campaigns", "parliament", "votes", "actors"],
   "extensions": {
