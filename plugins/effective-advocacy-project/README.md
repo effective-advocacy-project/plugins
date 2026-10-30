@@ -18,7 +18,7 @@ exactly the campaigns your account can open on the portal, and nothing else.
   open its **Connectors** tab, click **Connect**, and sign in with your EAP
   portal account. The plugin holds no credentials: sign-in is handled by your
   assistant and the EAP portal.
-- **A skill**, `eap-advocacy`, that tells the assistant which EAP tool answers
+- **A skill**, `eap-ask`, that tells the assistant which EAP tool answers
   which question and how to cite its sources.
 - The EAP icon.
 

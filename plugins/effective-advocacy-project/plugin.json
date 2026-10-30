@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "effective-advocacy-project",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Explore your EAP campaigns: actors, what they said, and how parliamentarians vote.",
   "author": {
     "name": "Effective Advocacy Project",

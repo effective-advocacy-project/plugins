@@ -1,5 +1,5 @@
 ---
-name: eap-advocacy
+name: eap-ask
 description: Answer questions about the user's Effective Advocacy Project (EAP) campaigns with the EAP tools - which actors matter, what an organisation or person has said, and how MEPs, deputies and senators vote, with amendments and roll calls. Use whenever the user asks about their advocacy campaign, its actors or statements, or parliamentary votes, positions, groups or amendments on it.
 ---
 
