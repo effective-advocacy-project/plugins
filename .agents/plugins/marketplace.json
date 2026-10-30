@@ -1,0 +1,21 @@
+{
+  "name": "effective-advocacy-project",
+  "interface": {
+    "displayName": "Effective Advocacy Project"
+  },
+  "plugins": [
+    {
+      "name": "effective-advocacy-project",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/hubert-thieriot/effective-advocacy-project-plugin.git",
+        "sha": "f7ec504b0e1f230644d46a2eae333e72b4fca26d"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
