@@ -7,9 +7,8 @@
     {
       "name": "effective-advocacy-project",
       "source": {
-        "source": "url",
-        "url": "https://github.com/hubert-thieriot/effective-advocacy-project-plugin.git",
-        "sha": "f7ec504b0e1f230644d46a2eae333e72b4fca26d"
+        "source": "local",
+        "path": "./plugins/effective-advocacy-project"
       },
       "policy": {
         "installation": "AVAILABLE",

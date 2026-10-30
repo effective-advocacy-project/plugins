@@ -30,8 +30,9 @@ codex plugin add effective-advocacy-project@effective-advocacy-project
 
 Then connect the `eap` server and sign in with your EAP portal account.
 
-The plugin itself lives at
-<https://github.com/hubert-thieriot/effective-advocacy-project-plugin>.
+The plugin's files are in
+[`plugins/effective-advocacy-project/`](plugins/effective-advocacy-project/),
+generated from the EAP code base for each release.
 
 - Help: <https://app.effectiveadvocacyproject.org/help/claude>
 - Privacy policy: <https://app.effectiveadvocacyproject.org/privacy>

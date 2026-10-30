@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "eap": {
+      "type": "http",
+      "url": "https://app.effectiveadvocacyproject.org/mcp"
+    }
+  }
+}

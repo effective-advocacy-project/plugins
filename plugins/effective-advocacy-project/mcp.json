@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "eap": {
+      "type": "streamable-http",
+      "url": "https://app.effectiveadvocacyproject.org/mcp"
+    }
+  }
+}

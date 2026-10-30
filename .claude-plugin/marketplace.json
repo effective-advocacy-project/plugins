@@ -5,16 +5,12 @@
     "email": "info@effectiveadvocacyproject.org"
   },
   "metadata": {
-    "description": "Plugins from the Effective Advocacy Project for Claude."
+    "description": "Plugins from the Effective Advocacy Project for Claude and Codex."
   },
   "plugins": [
     {
       "name": "effective-advocacy-project",
-      "source": {
-        "source": "github",
-        "repo": "hubert-thieriot/effective-advocacy-project-plugin",
-        "sha": "f7ec504b0e1f230644d46a2eae333e72b4fca26d"
-      },
+      "source": "./plugins/effective-advocacy-project",
       "description": "Explore your EAP campaigns: actors, what they said, and how parliamentarians vote.",
       "version": "1.0.7",
       "homepage": "https://app.effectiveadvocacyproject.org/help/claude",
