@@ -17,7 +17,8 @@
       },
       "description": "Explore your EAP campaigns: actors, what they said, and how parliamentarians vote.",
       "version": "1.0.7",
-      "homepage": "https://app.effectiveadvocacyproject.org/help/claude"
+      "homepage": "https://app.effectiveadvocacyproject.org/help/claude",
+      "displayName": "Effective Advocacy Project"
     }
   ]
 }
