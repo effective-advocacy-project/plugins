@@ -12,7 +12,7 @@
       "name": "effective-advocacy-project",
       "source": "./plugins/effective-advocacy-project",
       "description": "Explore your EAP campaigns: actors, what they said, and how parliamentarians vote.",
-      "version": "1.0.9",
+      "version": "1.0.10",
       "homepage": "https://app.effectiveadvocacyproject.org/help/claude",
       "displayName": "Effective Advocacy Project"
     }

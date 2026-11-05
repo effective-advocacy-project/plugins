@@ -1,6 +1,6 @@
 ---
 name: eap-ask
-description: Answer questions about the user's Effective Advocacy Project (EAP) campaigns with the EAP tools - which actors matter, what an organisation or person has said, and how MEPs, deputies and senators vote, with amendments and roll calls. Use whenever the user asks about their advocacy campaign, its actors or statements, or parliamentary votes, positions, groups or amendments on it.
+description: Answer questions about the user's Effective Advocacy Project (EAP) campaigns with the EAP tools - what happened (weekly bulletins, Latest blocks), where countries and actors stand (landscapes, arguments, voices, positions), the status of policies and what is coming up, what an organisation or person has said, and how MEPs, deputies and senators vote, with amendments and roll calls. Use whenever the user asks about their advocacy campaign, its actors, statements, policies or parliamentary votes.
 ---
 
 # Using the EAP tools
@@ -31,85 +31,60 @@ https://app.effectiveadvocacyproject.org/connect instead.
 - If the user has not named a campaign, call `list_my_projects` first. With
   one campaign you may omit `project_slug`; with several, ask which one, or
   pick the one the question clearly names, and pass its slug everywhere.
-- `list_my_projects` also says what each grant reaches. If a campaign has no
-  parliament access, the parliament tools refuse it: say so plainly instead
-  of retrying.
+- `list_my_projects` also says what each grant reaches.
 - Every tool takes an optional `intent`: one sentence about the user's goal
   (never their words, never names of private people).
 
-## Which tool for which question
+<!-- data-guide: a verbatim copy of efi_mcp/data_guide.md, which Ask's own prompt reads too;
+     efi_platform/tests/test_data_guide.py fails when the two differ. Edit the file, then paste it here. -->
+## EAP's data, by kind
 
-**Parliament** (`chamber` is `"ep"` for the European Parliament, `"an"` for
-the Assemblée nationale or `"senat"`; omit it for the campaign's first chamber —
-a campaign shows only some, and refuses the others):
+Each reply states its scope (window, topic, country, unit) and date; its notes on the result ("SUPPRESSED", "outside_filter", "not a count") are part of it.
 
-- Who stands where on the campaign: `parliament_overview`. It returns counts
-  per category and per political group. To get NAMES, pass `group` (its
-  short label as the counts print it, e.g. `RN`, `EPR`, `SOC`; for MEPs `PPE`, `S&D`, `Renew`) and/or `tier`
-  (a category spelled exactly as the tool lists it, e.g. `Persuadable`).
-  "Which RN deputies are persuadable?" is one call.
-- One member's record: `voting_profile` with `member` (a name is fine).
+### Curated artefacts, written by the EAP team
+- `bulletins`: what the editors judged mattered each week, with sources; published standard editions only. For "what happened last week", "what did the bulletin say about X", a recap. An edition covers its week as of its issue date: the days since are not in it, and a week without one is not a week with nothing. Cite the documents its text cites (`[doc:<id>]`), not the bulletin.
+- `landscapes`: a review of one country, or one topic across Europe: camps, arguments, who decides next. The first read for "where does NL stand on X", "who are the key players". As of its "current to" date; later events are in votes, documents and Latest blocks. A summary, not a primary source: cite what it names.
+- `topic_latest` / `country_latest`: the most recent week on a topic or country, with what is coming up. For "what's new on X", "what's next in FR". Its own week only.
+- For all three, "none published yet" means none written, not nothing happening.
 
-**Where each country stands**: `country_landscape` (no argument) gives one
-line per country, busiest first; with `jurisdiction` (`"IT"`, `"FR"`,
-`"EU"`, `"GB"` for the UK) the country's page. "not collected" is unknown,
-not zero; cards "awaiting review" are not counted yet; arguments are what is
-published in the country, voices are speakers from it.
+### Policy
+- `policies`: the campaign's measures with legal status, path to decision and votes on their files. Nightly. For "status of the meat-names ban", "what is in negotiation in FR". A status is the latest cited line, as precise as its source (a month is a month); "not recorded" is unknown, never "no status". Its votes are on files that can hold other measures, so carry no side: the split is in `vote_detail`.
+- `agenda`: what is coming up, about 90 days past the nightly export. Nothing past; "not followed" is unknown, not "nothing coming".
+- Votes and amendments: `search_votes`, `vote_detail` (split by group, rebels, one country's ballots), `voting_profile` (one member), `parliament_overview` (members by category; `group` / `tier` for names), `parliament_stats`, `search_amendments`. Nightly. Only as complete as each chamber publishes; some (Tweede Kamer show of hands, Austrian Nationalrat club decisions) record parties, not members. A category is a label, not a score; a rapporteur's or committee's amendment is not the deputy's own position.
+- Executive: `executive_overview`, `executive_profile`: what a government and its members did, said, promised, whom they met. Doing and saying are never added; "thin", "no record" and "no formal acts collected" are not neutral, not zero.
 
-**Executive** (`jurisdiction` is `"EU"` for the Commission, `"FR"` or `"GB"`):
+### Discourse
+- Talking points: `talking_points` (recurring arguments per side), `talking_point_statements` (the arguments behind a point or voice), `top_voices` (who carries each side). Nightly; arguments only. The first and last count documents, the middle one arguments. The campaign's default topic unless `topic='all'`. Credit goes to the principal, including an argument a journalist reports. "Too thin to rank" (suppressed) is not "nobody". `speaker_country` is the speaker's, `publisher_country` the outlet's; pass `period`, not dates.
+- One-pass read: `statements` (who said what), `positions` (stances per issue and document; a side only where two models agree), `new_arguments` (reasons matching no talking point). As of the reply's `as_of`. Credit goes to the text's owner (byline, person quoted, signers): an actor can be absent here and hold a stance in the talking points. A side is on the issue's own polarity.
+- `country_landscape`: each country's parliament record, government reading and top arguments and voices, or one country's page. Nightly. "not collected" is unknown, not zero.
 
-- What the government did, said, promised and whom it met on the campaign,
-  and each minister, Commissioner, ministry or DG with a record:
-  `executive_overview`. Doing and saying are two readings, never added
-  together; "thin" and "no record" are not neutral and not zero.
-- One person's or department's record: `executive_profile` with `actor` (the
-  actor id from the overview, or a name with `jurisdiction`). Acts of the
-  departments under a minister's portfolio are context, not their own acts.
-- Amendments: `search_amendments`. Put the topic in `query` (free text,
-  ranked by meaning and by words, any language), and narrow with filters:
-  `direction` (`pro` / `anti` for the campaign), `group`, `author`,
-  `outcome`, `dossier`, dates, `min_cosigners`. Without a query, `sort` by
-  `date` or `cosigners`. An amendment carried by a `rapporteur` or
-  `committee` is not that deputy's own position.
-- Roll calls: `search_votes`, same idea (`query`, `direction`, `outcome`,
-  `dossier`, dates, `max_margin`; `sort` by `date` or `closest`). Then
-  `vote_detail` with a `vote_id` for the split by group and the members who
-  voted against their group's majority.
+### Actors
+`find_actor`, `actor_profile`, `get_actor_dossier`, `actor_statements`, `list_actor_quotes`, `list_actor_mentions` (others naming them), `actor_stats` (counts, leaderboards). As collected. Who someone is and what they said themselves; an argument reported about them is in the talking points by `actor_id`.
 
-Describe categories in plain words, never as scores.
+### Search and documents
+`search_chunks`: the most relevant passages, any language, refreshed daily. Never a count, never proof of absence: it returns `top_k` whatever exists. `get_chunk`, `get_document` read in full.
 
-**Actors and what they said:**
+### Counts
+`corpus_stats` (documents collected, by month, source, channel), `coverage` (collected and read per country and channel; each source's first and last date: whether a silence is "not collected"). A page ("30 of 412") is not a count: quote its `total`. Counts over time measure our collection as much as the debate: never say anything grew, fell or peaked, nor compare periods.
 
-- Who an organisation or person is in the campaign: `actor_profile`.
-- What they have said, in their own words: `actor_statements` (filter with
-  `q` for words every passage must contain, or `register`: parliament,
-  government, lobbying, press, social, other; page with `cursor`).
-- To resolve an ambiguous name first: `find_actor`.
+## Where to start
+- What happened, what's new: `bulletins`, `topic_latest` / `country_latest`, then documents for the days since.
+- Who stands where: `landscapes`, `country_landscape`; check `top_voices`, `positions`, votes.
+- Where actor X stands: `actor_profile`, `statements`, `positions`; before concluding, `talking_point_statements` with their `actor_id` and `topic='all'`, and `top_voices`.
+- How they voted: `search_votes`, `vote_detail`, `voting_profile`.
+- Status of a policy: `policies`, then `agenda`, `search_votes`.
+- Counts: `corpus_stats`, `parliament_stats`, `actor_stats`, `coverage`.
+- A quote: `search_chunks`, `actor_statements`, `talking_point_statements`.
 
-**What is being said** (where the grant includes talking points):
+## Method
+1. Start with the source built for the question.
+2. Answer.
+3. Before stating an absence, a "nothing changed", a ranking or a count, rest it on the source built for that, and state its scope and date. Where a curated artefact is older than the period asked about, fill the gap from the nightly sources and say so. Compare numbers only on the same scope.
+<!-- /data-guide -->
 
-- The most present arguments for and against the campaign over a period:
-  `talking_points` (`period` 30d, 3m — the default — 12m or all; `side` pro
-  or anti). For "what is rising", compare each point's share of documents
-  with its share in the previous period (`previous_documents` /
-  `previous_documents_total`), not raw counts: the corpus grows. Do not
-  draw or describe a trend line from `series`: its periods may have been
-  read by different readers, so a change across them can be the reader's.
-- `language` is the documents' language, not a country: say so when you
-  compare by language.
-- The statements behind one: `talking_point_statements` with its id or label.
-- Who carries each side (people and organisations, by period, country,
-  language, actor category, person / organisation): `top_voices`. Say
-  "credited in X% of the side's documents" (shares do not add up to 100%),
-  and report `coverage` (arguments) and `confidence` with the names; a
-  `suppressed` side is too thin to rank, which is not "nobody". To quote a voice:
-  `talking_point_statements` with its `actor_id`, cited by document.
-
-**Open questions** about the campaign's documents (news, statements,
-speeches): `search_chunks` with a plain-language `query`; it reaches
-documents in other languages too. If the reply carries a `notice`, the
-results are word matches only: retry with terms in the documents' own
-language. Use `get_chunk` to read a passage in full.
+Parliament tools take `chamber` (`"ep"` for the European Parliament, `"an"` for the
+Assemblée nationale, `"senat"`; omit it for the campaign's first chamber). A campaign
+without parliament access in `list_my_projects` is refused by them: say so instead of retrying.
 
 ## Answering
 
@@ -123,10 +98,15 @@ language. Use `get_chunk` to read a passage in full.
   link, a vote by its `ballot_url`. Never cite or show internal identifiers
   (document hashes, chunk ids, argument ids, actor ids, `cite_urn`) to the
   user.
+- Quote word for word, in the source's language; put a translation after it
+  in parentheses, never inside the quote marks, and mark a cut with […].
+- Never decide a question falls outside EAP's sources before looking: an
+  actor or institution outside Europe can still be in them.
 - Quote statements verbatim from the passage the tool returned.
 - Never present "thin" or "no record" as neutral or as zero, nor an absence
-  as silence: check `coverage` before saying nobody spoke; no statement
-  where nothing was collected is "not collected".
+  as silence: no statement where nothing was collected is "not collected".
+- Say a voice is "credited in X% of the side's documents" (shares do not add
+  up to 100%), and describe categories in plain words, never as scores.
 - Do not state more than the tools returned. If a list was truncated or a
   search found nothing, say so.
 - Answer in the user's language, whatever the language of the documents.
