@@ -62,7 +62,11 @@ Each reply states its scope (window, topic, country, unit) and date; its notes o
 `find_actor`, `actor_profile`, `get_actor_dossier`, `actor_statements`, `list_actor_quotes`, `list_actor_mentions` (others naming them), `actor_stats` (counts, leaderboards). As collected. Who someone is and what they said themselves; an argument reported about them is in the talking points by `actor_id`.
 
 ### Search and documents
-`search_chunks`: the most relevant passages, any language, refreshed daily. Never a count, never proof of absence: it returns `top_k` whatever exists. `get_chunk`, `get_document` read in full.
+`search_documents`: enumerate the project's held documents, newest first, with an exact filtered total and an opaque continuation cursor. Optional lexical query over titles and digest-or-lead (not full text), configured topic, publisher country, speaker registry country, inclusive dates, language, channel and any source kind. Filters apply before paging; reuse the same filters with the cursor and restart if an export/scope changes. Topic/speaker filters require analysed arguments, so they cannot rule out unread or unclassified material. Returns document ids and citation URLs for `get_document`. No topic means all documents, including unread ones.
+
+`document_coverage`: the same filters and total as `search_documents`, with a publisher-country overview and paged source-family counts, date ranges and undated/future counts. `include_eu27=true` includes every member state even when no evidence is held; countries excluded by a publisher filter are labelled outside that filter, not zero. Shows collection counts before query/topic/speaker filtering alongside matching counts. Zero means no held evidence in that scope, never no political activity. Publisher location and speaker registry country do not establish the country discussed; no subject-country field is inferred. Counts are collection breadth, not independent corroboration, political influence or reading completion. Documents and analysis exports each state their own as-of date; unavailable exports or query indexes are unknown, not zero. Grants: `search_documents` requires the Documents grant; `document_coverage` requires the explicit Statistics grant.
+
+`search_chunks`: the most relevant passages, any language, refreshed daily. Any held source kind can be filtered (including national parliamentary/government families). Never a count, never proof of absence: it returns `top_k` whatever exists. `get_chunk`, `get_document` read in full.
 
 ### Counts
 `corpus_stats` (documents collected, by month, source, channel), `coverage` (collected and read per country and channel; each source's first and last date: whether a silence is "not collected"). A page ("30 of 412") is not a count: quote its `total`. Counts over time measure our collection as much as the debate: never say anything grew, fell or peaked, nor compare periods.
@@ -74,6 +78,7 @@ Each reply states its scope (window, topic, country, unit) and date; its notes o
 - How they voted: `search_votes`, `vote_detail`, `voting_profile`.
 - Status of a policy: `policies`, then `agenda`, `search_votes`.
 - Counts: `corpus_stats`, `parliament_stats`, `actor_stats`, `coverage`.
+- Evidence breadth or country gaps: `document_coverage`, then page `search_documents` under the same filters.
 - A quote: `search_chunks`, `actor_statements`, `talking_point_statements`.
 
 ## Method
