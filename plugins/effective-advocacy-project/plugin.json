@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "effective-advocacy-project",
-  "version": "1.0.11",
-  "description": "Explore your EAP campaigns: actors, what they said, and how parliamentarians vote.",
+  "version": "1.0.12",
+  "description": "Ask about your EAP advocacy campaigns: weekly bulletins, actors and what they said, policies, and how parliaments vote.",
   "author": {
     "name": "Effective Advocacy Project",
     "email": "info@effectiveadvocacyproject.org",
@@ -17,7 +17,7 @@
       "interface": {
         "displayName": "Effective Advocacy Project",
         "shortDescription": "Your advocacy campaigns",
-        "longDescription": "Explore your EAP campaigns: actors, what they said, and how parliamentarians vote. Ask who stands where in parliament, how a member votes, which amendments and roll calls matter, and what an organisation or person has said, with links to the sources. Answers come with interactive panels. You see only the campaigns your EAP account has been granted. To improve the service, EAP records which tools are used and a one-line summary of the purpose of each call, never your conversation.",
+        "longDescription": "Ask about your EAP campaigns: what happened each week, where countries and actors stand, the status of the policies you follow and what is coming up, what an organisation or person has said, and how members of parliament and governments act and vote, with amendments, roll calls and links to the source documents. Answers come with interactive panels. You see only the campaigns, and the parts of them, your EAP account has been granted. To improve the service, EAP records which tools are used and a one-line summary of the purpose of each call, never your conversation.",
         "developerName": "Effective Advocacy Project",
         "category": "Productivity",
         "websiteURL": "https://effectiveadvocacyproject.org",
@@ -25,7 +25,7 @@
         "termsOfServiceURL": "https://app.effectiveadvocacyproject.org/terms",
         "defaultPrompt": [
           "Which campaigns can I explore?",
-          "Who are the persuadable deputies in parliament?",
+          "What happened on my campaign last week?",
           "What have the main actors said this month?"
         ],
         "brandColor": "#AB4747",
@@ -36,7 +36,7 @@
         "translations": {
           "fr-FR": {
             "subtitle": "Vos campagnes de plaidoyer",
-            "description": "Explorez vos campagnes EAP : les acteurs, ce qu'ils ont dit, et comment votent les parlementaires. Demandez qui se situe où au Parlement, comment vote un député, quels amendements et scrutins comptent, et ce qu'une organisation ou une personne a dit, avec les liens vers les sources. Les réponses s'accompagnent de panneaux interactifs. Vous ne voyez que les campagnes auxquelles votre compte EAP a accès. Pour améliorer le service, EAP enregistre les outils utilisés et une phrase résumant le but de chaque appel, jamais votre conversation."
+            "description": "Interrogez vos campagnes EAP : ce qui s'est passé chaque semaine, où se situent les pays et les acteurs, l'état des politiques que vous suivez et ce qui arrive, ce qu'une organisation ou une personne a dit, et comment parlementaires et gouvernements agissent et votent, avec amendements, scrutins et liens vers les documents sources. Les réponses s'accompagnent de panneaux interactifs. Vous ne voyez que les campagnes, et les parties de celles-ci, auxquelles votre compte EAP a accès. Pour améliorer le service, EAP enregistre les outils utilisés et une phrase résumant le but de chaque appel, jamais votre conversation."
           }
         }
       }

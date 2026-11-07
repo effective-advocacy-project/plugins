@@ -1,7 +1,7 @@
 {
   "name": "effective-advocacy-project",
-  "version": "1.0.11",
-  "description": "Explore your EAP campaigns: actors, what they said, and how parliamentarians vote.",
+  "version": "1.0.12",
+  "description": "Ask about your EAP advocacy campaigns: weekly bulletins, actors and what they said, policies, and how parliaments vote.",
   "author": {
     "name": "Effective Advocacy Project",
     "email": "info@effectiveadvocacyproject.org",

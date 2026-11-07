@@ -1,6 +1,6 @@
 ---
 name: eap-ask
-description: Answer questions about the user's Effective Advocacy Project (EAP) campaigns with the EAP tools - what happened (weekly bulletins, Latest blocks), where countries and actors stand (landscapes, arguments, voices, positions), the status of policies and what is coming up, what an organisation or person has said, and how MEPs, deputies and senators vote, with amendments and roll calls. Use whenever the user asks about their advocacy campaign, its actors, statements, policies or parliamentary votes.
+description: Answer questions about the user's Effective Advocacy Project (EAP) campaigns with the EAP tools - what happened (weekly bulletins, the latest week on a topic or country), where countries and actors stand (landscapes, arguments, voices), the status of policies and what is coming up, what an organisation or person has said, how members of parliament and governments act and vote (roll calls, amendments), and the campaign's source documents. Use whenever the user asks about their campaign, an actor, a statement, a policy, a vote or a document EAP may hold, even if they do not name EAP; never answer these from memory.
 ---
 
 # Using the EAP tools
