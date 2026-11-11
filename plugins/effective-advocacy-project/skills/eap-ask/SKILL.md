@@ -55,6 +55,7 @@ Each reply states its scope (window, topic, country, unit) and date; its notes o
 
 ### Discourse
 - Talking points: `talking_points` (recurring arguments per side), `talking_point_statements` (the arguments behind a point or voice), `top_voices` (who carries each side). Nightly; arguments only. The first and last count documents, the middle one arguments. The campaign's default topic unless `topic='all'`. Credit goes to the principal, including an argument a journalist reports. "Too thin to rank" (suppressed) is not "nobody". `speaker_country` is the speaker's, `publisher_country` the outlet's; pass `period`, not dates.
+- Types of measure: `measure_types` (the vocabulary, and for one `type_id` its voices for and against the type) and `measure_type_evidence` (the measures and arguments behind one type). A stance is for or against the TYPE, not a side for the campaign; only a decision in state accepted is checked.
 - One-pass read: `statements` (who said what), `positions` (stances per issue and document; a side only where two models agree), `new_arguments` (reasons matching no talking point). As of the reply's `as_of`. Credit goes to the text's owner (byline, person quoted, signers): an actor can be absent here and hold a stance in the talking points. A side is on the issue's own polarity.
 - `country_landscape`: each country's parliament record, government reading and top arguments and voices, or one country's page. Nightly. "not collected" is unknown, not zero.
 
